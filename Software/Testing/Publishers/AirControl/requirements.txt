@@ -1,0 +1,4 @@
+# Arquivo de dependências do projeto
+# Para instalar, execute: pip install -r requirements.txt
+
+paho-mqtt==2.1.0

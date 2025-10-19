@@ -9,16 +9,16 @@
     "projectName": "HTNB32L-XXX-OpenCPU",
     "configurations": [
         {
-            "name": "Debug - Template",
+            "name": "Debug - Core_Hub",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/Build/Template/HTNB32L-XXX-Template.elf",
+            "executable": "${workspaceRoot}/Build/Core_Hub/HTNB32L-XXX-Core_Hub.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "jlink",
             "device": "CORTEX-M3",
             "interface": "swd",
             "runToEntryPoint": "main_entry",
-            "preLaunchTask": "Debug - Template", // configured in tasks.json
+            "preLaunchTask": "Debug - Core_Hub", // configured in tasks.json
             // "preLaunchCommands": ["Build all"], // you can execute command instead of task
             // "svdFile": "${workspaceRoot}/Debug/SVD/HTNB32L-XXX.svd", // Include svd to watch device peripherals
             "swoConfig":

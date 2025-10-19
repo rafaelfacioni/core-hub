@@ -1,0 +1,43 @@
+graph TD
+    subgraph "Inicialização"
+        A(Início) --> B{Conectado ao MQTT?};
+        B -- Sim --> C[Ocioso: Aguardando Eventos];
+        B -- Não --> D[Tenta Reconectar];
+        D --> B;
+    end
+
+    subgraph "Processamento de Eventos"
+        C -- Msg: SmartDoor --> E{Análise: Luz / Porta};
+        C -- Msg: SenseClima --> F{Análise: Temperatura};
+
+        E -- "Luz ON & Porta FECHADA" --> G[Ligar Ar Condicionado];
+        E -- "Luz OFF" --> H[Desligar Ar Condicionado];
+        E -- "Luz ON & Porta ABERTA" --> I{Lógica do Alarme};
+
+        F -- "Temp. > LIM_SUPERIOR" --> G;
+        F -- "Temp. < LIM_INFERIOR" --> H;
+
+        I -- "Inicia Timer (60s)" --> J((Aguardando Timer));
+        J -- "Timer Esgotado" --> K[Ligar Buzzer];
+        J -- "Porta Fechou ou Luz Apagou" --> L[Desligar Buzzer];
+    end
+
+    subgraph "Retorno ao Estado Ocioso"
+        G --> C;
+        H --> C;
+        K --> C;
+        L --> C;
+    end
+
+    %% Estilização dos Nós
+    style A fill:#2a9d8f,stroke:#fff,stroke-width:2px
+    style C fill:#2a9d8f,stroke:#fff,stroke-width:2px
+    style D fill:#e76f51,stroke:#fff,stroke-width:2px
+    style E fill:#e9c46a,stroke:#333
+    style F fill:#e9c46a,stroke:#333
+    style I fill:#e9c46a,stroke:#333
+    style J fill:#f4a261,stroke:#333
+    style G fill:#f4a261,stroke:#333
+    style H fill:#f4a261,stroke:#333
+    style K fill:#e76f51,stroke:#fff,stroke-width:2px
+    style L fill:#2a9d8f,stroke:#fff,stroke-width:2px

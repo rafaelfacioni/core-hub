@@ -5,7 +5,7 @@
             "includePath": [
                 "C:/gcc_arm/bin",
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/Applications/Template/Inc",
+                "${workspaceFolder}/Applications/Core_Hub/Inc",
                 "${workspaceFolder}/SDK/HT_API/Common/Inc",
                 "${workspaceFolder}/SDK/HT_API/Driver_I2C/Inc",
                 "${workspaceFolder}/SDK/HT_API/Driver_SPI/Inc",
@@ -29,7 +29,7 @@
                 "path": [
                     "C:/gcc_arm/bin",
                     "${workspaceFolder}/**",
-                    "${workspaceFolder}/Applications/Template/Inc",
+                    "${workspaceFolder}/Applications/Core_Hub/Inc",
                     "${workspaceFolder}/SDK/HT_API/Common/Inc",
                     "${workspaceFolder}/SDK/HT_API/Driver_I2C/Inc",
                     "${workspaceFolder}/SDK/HT_API/Driver_SPI/Inc",

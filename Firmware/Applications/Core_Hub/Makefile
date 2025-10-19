@@ -1,7 +1,7 @@
 AVAILABLE_TARGETS = qcx212_0h00
 TOOLCHAIN         = GCC
-PROJECT_NAME      = Template
-BINNAME           = Template
+PROJECT_NAME      = Core_Hub
+BINNAME           = HTNB32L-XXX-Core_Hub
 
 TOP := ../..
 
@@ -26,7 +26,9 @@ AZURE_IOT_ENABLE = y
 CFLAGS_INC        +=  -I Inc
 
 obj-y             += Src/main.o \
-                     Src/HT_BSP_Custom.o
+                     Src/HT_BSP_Custom.o \
+                     Src/HT_CoreHubFsm.o \
+                     Src/HT_MQTT_Api.o
 
 include $(TOP)/SDK/PLAT/tools/scripts/Makefile.rules
 

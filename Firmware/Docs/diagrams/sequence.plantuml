@@ -1,0 +1,20 @@
+@startuml
+actor User
+participant SmartDoor
+participant CoreHub
+participant AirControl
+
+User -> SmartDoor: Fecha a porta
+SmartDoor -> CoreHub: Envia "porta=CLOSED"
+User -> SmartDoor: Acende a luz
+SmartDoor -> CoreHub: Envia "luz=ON"
+
+activate CoreHub
+CoreHub -> CoreHub: Lógica: Presença detectada
+CoreHub -> AirControl: Publica "power=ON"
+CoreHub -> AirControl: Publica "temperature=24"
+activate AirControl
+AirControl -> AirControl: Liga o AC
+deactivate AirControl
+deactivate CoreHub
+@enduml

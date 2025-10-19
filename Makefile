@@ -1,11 +1,3 @@
-
-# Só escrevi esse MAKE := make pq eu estou utilizando o make do mingw64
-# e o make do mingw64 é diferente do make do chocollatey, então eu preciso especificar
-# o make que eu quero utilizar, nesse caso o do mingw64
-# Caso você esteja utilizando o make do chocolatey, pode remover essa linha
-
-MAKE := make
-
 .PHONY:gccall
 gccall:
 	(cd Applications/$(PROJECT) && $(MAKE) V=$(V) -f Makefile all)
@@ -23,7 +15,6 @@ clean-gccall:
 .PHONY:clean-gcc
 clean-gcc:
 	(cd Applications/$(PROJECT) && $(MAKE) -f Makefile clean)
-
 .PHONY:size
 size:
 	(cd Applications/$(PROJECT) && $(MAKE) -f Makefile size)

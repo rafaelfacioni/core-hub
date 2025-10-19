@@ -1,0 +1,24 @@
+@startuml
+actor User
+participant SmartDoor
+participant CoreHub
+
+User -> SmartDoor: Abre a porta (com a luz já acesa)
+SmartDoor -> CoreHub: Envia "porta=OPEN"
+
+activate CoreHub
+CoreHub -> CoreHub: Inicia timer (60s)
+... 60 segundos depois ...
+CoreHub -> CoreHub: Timer expirou!
+CoreHub -> SmartDoor: Publica "buzzer=ON"
+activate SmartDoor
+SmartDoor -> SmartDoor: Aciona o buzzer
+deactivate SmartDoor
+deactivate CoreHub
+
+User -> SmartDoor: Fecha a porta
+SmartDoor -> CoreHub: Envia "porta=CLOSED"
+activate CoreHub
+CoreHub -> SmartDoor: Publica "buzzer=OFF"
+deactivate CoreHub
+@enduml

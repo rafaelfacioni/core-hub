@@ -42,7 +42,7 @@
 #include "MQTTClient.h"
 #include "uart_qcx212.h"
 
-#define MQTT_TLS_ENABLE 1
+#define MQTT_TLS_ENABLE 0
 
 #define MQTT_GENERAL_TIMEOUT 60000
 
@@ -76,7 +76,7 @@ uint8_t HT_MQTT_Connect(MQTTClient *mqtt_client, Network *mqtt_network, char *ad
                                         uint32_t sendbuf_size, uint8_t *readbuf, uint32_t readbuf_size);
 
 /*!******************************************************************
- * \fn void HT_MQTT_Publish(MQTTClient *mqtt_client, char *topic, uint8_t *payload, uint32_t len, enum QoS qos, uint8_t retained, uint16_t id, uint8_t dup)
+ * \fn int HT_MQTT_Publish(MQTTClient *mqtt_client, char *topic, uint8_t *payload, uint32_t len, enum QoS qos, uint8_t retained, uint16_t id, uint8_t dup)
 
  * \brief Send an MQTT publish packet and wait for all acks, depending on the QoSs option.
  *
@@ -90,9 +90,9 @@ uint8_t HT_MQTT_Connect(MQTTClient *mqtt_client, Network *mqtt_network, char *ad
  * \param[in] uint8_t dup                       DUP flag.
  * 
  * 
- * \retval none
+ * \retval int                                  0 = Success, !=0 = Error
  *******************************************************************/
-void HT_MQTT_Publish(MQTTClient *mqtt_client, char *topic, uint8_t *payload, uint32_t len, enum QoS qos, uint8_t retained, uint16_t id, uint8_t dup);
+int HT_MQTT_Publish(MQTTClient *mqtt_client, char *topic, uint8_t *payload, uint32_t len, enum QoS qos, uint8_t retained, uint16_t id, uint8_t dup);
 
 /*!******************************************************************
  * \fn void HT_MQTT_SubscribeCallback(MessageData *msg)
@@ -117,6 +117,47 @@ void HT_MQTT_SubscribeCallback(MessageData *msg);
  * \retval none
  *******************************************************************/
 void HT_MQTT_Subscribe(MQTTClient *mqtt_client, char *topic, enum QoS qos);
+
+/*!******************************************************************
+ * \fn void HT_MQTT_SetMessageCallback(void (*callback)(MessageData *msg))
+ * \brief Set the callback function for MQTT messages.
+ *
+ * \param[in] void (*callback)(MessageData *msg)  Callback function pointer.
+ * 
+ * \retval none
+ *******************************************************************/
+void HT_MQTT_SetMessageCallback(void (*callback)(MessageData *msg));
+
+/*!******************************************************************
+ * \fn int HT_MQTT_Yield(MQTTClient *mqtt_client, int timeout_ms)
+ * \brief Yield to allow MQTT client to process incoming messages.
+ *
+ * \param[in] MQTTClient *mqtt_client           MQTT client handle.
+ * \param[in] int timeout_ms                    Timeout in milliseconds.
+ * 
+ * \retval int                                  0 = Success, 1 = Error
+ *******************************************************************/
+int HT_MQTT_Yield(MQTTClient *mqtt_client, int timeout_ms);
+
+/*!******************************************************************
+ * \fn int HT_MQTT_Disconnect(MQTTClient *mqtt_client)
+ * \brief Disconnect from MQTT broker.
+ *
+ * \param[in] MQTTClient *mqtt_client           MQTT client handle.
+ * 
+ * \retval int                                  0 = Success, 1 = Error
+ *******************************************************************/
+int HT_MQTT_Disconnect(MQTTClient *mqtt_client);
+
+/*!******************************************************************
+ * \fn int HT_MQTT_Unsubscribe(MQTTClient *mqtt_client, char *topic)
+ * \brief Unsubscribe a MQTT topic.
+ *
+ * \param[in] MQTTClient *mqtt_client           MQTT client handle.
+ * \param[in] char *topic                       MQTT topic to unsubscribe from.
+ * \retval int                                  0 = Success, 1 = Error
+ *******************************************************************/
+int HT_MQTT_Unsubscribe(MQTTClient *mqtt_client, char *topic);
 
 #endif /* __HT_MQTT_API_H__ */
 

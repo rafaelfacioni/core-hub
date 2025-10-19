@@ -7,25 +7,25 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Compile - Template",
+            "label": "Compile - Core_Hub",
             "group": "build",
             "type": "shell",
             "command": "make.exe",
-            "args": ["-j4", "gccall", "TARGET=qcx212_0h00", "V=0", "PROJECT=Template"]
+            "args": ["-j4", "gccall", "TARGET=qcx212_0h00", "V=0", "PROJECT=Core_Hub"]
         },
         {
-            "label": "Debug - Template",
+            "label": "Debug - Core_Hub",
             "group": "build",
             "type": "shell",
             "command": "python",
-            "args": ["Debug/Scripts/debug.py", "Template"]
+            "args": ["Debug/Scripts/debug.py", "Core_Hub"]
         },
         {
-            "label": "Run - Template",
+            "label": "Run - Core_Hub",
             "group": "build",
             "type": "shell",
             "command": "python",
-            "args": ["Debug/Scripts/debug.py", "Template"]
+            "args": ["Debug/Scripts/debug.py", "Core_Hub"]
         },
         {
             "label": "COM Select",

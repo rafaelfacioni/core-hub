@@ -1,0 +1,12 @@
+stateDiagram-v2
+    [*] --> AguardandoEventos
+    AguardandoEventos --> ProcessandoEvento: Mensagem MQTT recebida
+
+    state ProcessandoEvento {
+        [*] --> AnaliseDoTopico
+        AnaliseDoTopico --> ControleAC: Tópico de Luz ou Porta
+        AnaliseDoTopico --> ControleAC: Tópico de Temperatura
+        AnaliseDoTopico --> ControleBuzzer: Tópico de Luz ou Porta
+        ControleAC --> AguardandoEventos
+        ControleBuzzer --> AguardandoEventos
+    }
